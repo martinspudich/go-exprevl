@@ -1,0 +1,37 @@
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+.private.env.json
+
+### NetBeans ###
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+# Others
+*.class
+*.log
+
+
+# bin files
+micu-backend/bin/
+micu-commands/bin/
+micu-connector-rs4400/bin/
+micu-connector/bin/
+micu-db/bin/
+micu-interface/bin/
+micu-gb2pp/bin/
+micu-validator/bin/
