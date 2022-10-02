@@ -14,6 +14,7 @@ const (
 
 // Evaluate function evaluate math expression to value.
 func Evaluate(expr string, args map[string]float64) (float64, error) {
+	// Find operands and operators in expression
 	var values []string
 	var operators []string
 	var value string
@@ -29,12 +30,13 @@ func Evaluate(expr string, args map[string]float64) (float64, error) {
 	}
 	values = append(values, strings.TrimSpace(value))
 
-	//var err error
+	// Replace arguments by values
 	operands, err := replaceArgByValue(values, args)
 	if err != nil {
 		return 0, err
 	}
 
+	// Evaluate two numbers and operands
 	result := operands[0]
 	for i, operator := range operators {
 		r, err := eval(result, operands[i+1], operator)
@@ -46,6 +48,7 @@ func Evaluate(expr string, args map[string]float64) (float64, error) {
 	return result, nil
 }
 
+// eval will evaluate two numbers with operand
 func eval(a, b float64, operand string) (float64, error) {
 	switch operand {
 	case Add:
@@ -61,6 +64,7 @@ func eval(a, b float64, operand string) (float64, error) {
 	return 0, nil
 }
 
+// replaceArgByValue replace arguments in expression by value from args map
 func replaceArgByValue(values []string, args map[string]float64) ([]float64, error) {
 	var err error
 	var operands []float64
@@ -69,7 +73,7 @@ func replaceArgByValue(values []string, args map[string]float64) ([]float64, err
 		if !ok {
 			operand, err = strconv.ParseFloat(v, 64)
 			if err != nil {
-				return []float64{}, ErrArgNotFound
+				return []float64{}, ErrExprInvalid
 			}
 		}
 		operands = append(operands, operand)

@@ -41,7 +41,7 @@ func TestEvaluate(t *testing.T) {
 			expr:          "c + y",
 			args:          map[string]float64{"x": 1, "y": 2},
 			want:          0,
-			expectedError: ErrArgNotFound,
+			expectedError: ErrExprInvalid,
 		},
 		{
 			name:          "Test Sub",
@@ -69,7 +69,7 @@ func TestEvaluate(t *testing.T) {
 			expr:          "c - y",
 			args:          map[string]float64{"x": 1, "y": 2},
 			want:          0,
-			expectedError: ErrArgNotFound,
+			expectedError: ErrExprInvalid,
 		},
 		{
 			name:          "Test Multi",
@@ -97,7 +97,7 @@ func TestEvaluate(t *testing.T) {
 			expr:          "c * y",
 			args:          map[string]float64{"x": 1, "y": 2},
 			want:          0,
-			expectedError: ErrArgNotFound,
+			expectedError: ErrExprInvalid,
 		},
 		{
 			name:          "Test Div",
@@ -125,7 +125,21 @@ func TestEvaluate(t *testing.T) {
 			expr:          "c / y",
 			args:          map[string]float64{"x": 1, "y": 2},
 			want:          0,
-			expectedError: ErrArgNotFound,
+			expectedError: ErrExprInvalid,
+		},
+		{
+			name:          "Expression error",
+			expr:          "1 @ 2",
+			args:          map[string]float64{},
+			want:          0,
+			expectedError: ErrExprInvalid,
+		},
+		{
+			name:          "Single number expression",
+			expr:          "7",
+			args:          map[string]float64{},
+			want:          7,
+			expectedError: nil,
 		},
 	}
 
