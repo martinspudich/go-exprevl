@@ -1,47 +1,25 @@
 # Expression Evaluator
 
-This GO library is for evaluating string expressions.
+This go library is for evaluating string expressions. The library is designed to calculate value of the expression.
+Currently, only simple expressions are supported and are evaluated from left to right. Parentheses are not supported.
 
-Library is design to calculate expression to the value.
-
-It will contain only one public interface ExpressionCalculator
+It contains only one public method.
 
 ```go
-type ExpressionEvaluator interface {
-  Evaluate(expr string, map[string]float64)
-}
+func Evaluate(expr string, map[string]float64)
 ```
+Evaluate method will evaluate an expression with arguments defined in the map.
 
-or only one public function
-
-```go
-func (expr string, map[string]float64)
-```
-
-Calculate method will evalueate expression with arguments deffined in map.
-
-Example with interface
+Example:
 
 ```go
-ex := NewExpressionEvaluator()
-args := map[string]float64 {
-  "x": 1,
-  "y": 2,
-}
-result := ex.Calculate("$x + $y, args)
-println("result: ", result) // prints "result: 3"
-```
-
-Example with func
-
-```go
-import eevl github.com/martinspudich/go/exprevl
+import eevl github.com/martinspudich/go-exprevl
 
 args := map[string]float64 {
   "x": 1,
   "y": 2,
 }
-result := eevl.Evaluate("$x + $y, args)
+result := eevl.evaluate("x + y, args)
 println("result: ", result) // prints "result: 3"
 ```
 
@@ -51,9 +29,9 @@ For now, just basic math operators are supported.
 
 Supported operators:
 
-```
-+ (Plus)
-- (Minus)
-* (Multiply)
-/ (Devision)
-```
+| Operator | Description |
+|----------|-------------|
+| +        | plus        |
+| -        | minus       |
+| *        | multiply    |
+| /        | devision    |
